@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+build_pdf.py
+Lab 6/coverage_results.txt
+Lab 7/lab7_original_exec.txt
+Lab 7/lab7_fixed_exec.txt
+Lab 7/lab7_final_fuzz.txt
+Lab 7/initial_fuzz_output.txt
+Lab 7/fixed_results.txt
+Lab 7/screenshot_*.png

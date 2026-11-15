@@ -1,15 +1,42 @@
 def parse_application(text):
-    visa, entries = text.split(':')
-    return visa.strip().title(), int(entries)
+    if text is None or not isinstance(text, str):
+        raise ValueError("invalid application text")
+    parts = text.split(":")
+    if len(parts) != 2:
+        raise ValueError("expected format visa:entries")
+    visa, entries = parts
+    visa = visa.strip().title()
+    entries = entries.strip()
+    if entries == "":
+        raise ValueError("entries must be an integer")
+    return visa, int(entries)
+
 
 def processing_average(days_csv):
-    values = [int(r) for r in days_csv.split(',')]
+    if days_csv is None or not isinstance(days_csv, str):
+        raise ValueError("invalid processing days CSV")
+    parts = days_csv.split(",")
+    if len(parts) == 0 or any(part.strip() == "" for part in parts):
+        raise ValueError("processing days must be comma-separated integers")
+    values = [int(part.strip()) for part in parts]
+    if len(values) == 0:
+        raise ValueError("no processing days provided")
     return sum(values) // len(values)
 
+
 def payable_fee(text):
-    fee, discount = text.split('|')
-    total = float(fee) * 1.18 - float(discount)
+    if text is None or not isinstance(text, str):
+        raise ValueError("invalid fee text")
+    parts = text.split("|")
+    if len(parts) != 2:
+        raise ValueError("expected format fee|discount")
+    fee, discount = parts
+    try:
+        total = float(fee.strip()) * 1.18 - float(discount.strip())
+    except ValueError:
+        raise ValueError("fee and discount must be numeric")
     return max(total, 0)
+
 
 def main():
     print("==== Running parse_application ====")
@@ -26,6 +53,7 @@ def main():
     user_input = input("Enter fee|discount (e.g. 6000|500): ")
     result = payable_fee(user_input)
     print("Payable Fee:", result)
+
 
 if __name__ == "__main__":
     main()

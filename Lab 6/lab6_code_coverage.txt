@@ -1,0 +1,12 @@
+Name                                   Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------
+CodeCoverageTest_visa_application.py      79      0   100%
+visa_application.py                       37      0   100%
+--------------------------------------------------------------------
+TOTAL                                    116      0   100%
+Name                                     Stmts   Miss Branch BrPart  Cover   Missing
+------------------------------------------------------------------------------------
+BranchCoverageTest_visa_application.py      58      0      0      0   100%
+visa_application.py                         37      0     26      0   100%
+------------------------------------------------------------------------------------
+TOTAL                                       95      0     26      0   100%
